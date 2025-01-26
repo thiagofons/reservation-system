@@ -22,6 +22,19 @@ class _LoginScreenState extends State<LoginScreen> {
       "password": TextEditingController(),
     };
 
+    signIn() async {
+      Provider.of<UserProvider>(context, listen: false)
+          .signIn(controllers["email"]!.text, controllers["password"]!.text)
+          .then((result) {
+        if (result) {
+          Navigator.pushReplacementNamed(
+            context,
+            HomeScreen.routeName,
+          );
+        }
+      });
+    }
+
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(120),
@@ -70,19 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                     ),
-                    onPressed: () {
-                      Provider.of<UserProvider>(context, listen: false)
-                          .signIn(controllers["email"]!.text,
-                              controllers["password"]!.text)
-                          .then((result) {
-                        if (result) {
-                          Navigator.pushNamed(
-                            context,
-                            HomeScreen.routeName,
-                          );
-                        }
-                      });
-                    },
+                    onPressed: signIn,
                     child: Text(
                       "Login",
                       style: AppTextStyles.button.copyWith(

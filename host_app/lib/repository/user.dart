@@ -31,15 +31,29 @@ class UserRepository {
                   password VARCHAR NOT NULL
               );
 
-              INSERT INTO user(name, email, password) VALUES('Teste 1', 'teste1@teste', '123456');
-              INSERT INTO user(name, email, password) VALUES('Teste 2', 'teste2@teste', '123456');
-              INSERT INTO user(name, email, password) VALUES('Teste 3', 'teste3@teste', '123456');
-              INSERT INTO user(name, email, password) VALUES('Teste 4', 'teste4@teste', '123456');
-              INSERT INTO user(name, email, password) VALUES('Teste 5', 'teste5@teste', '123456');
               """;
               await db.execute(sql);
             }));
+
+    // Inserting some users for testing
+    await db.execute(
+        "INSERT INTO user(name, email, password) VALUES('Teste 1', 'teste1@teste', '123456');");
+    await db.execute(
+        "INSERT INTO user(name, email, password) VALUES('Teste 2', 'teste2@teste', '123456');");
+    await db.execute(
+        "INSERT INTO user(name, email, password) VALUES('Teste 3', 'teste3@teste', '123456');");
+    await db.execute(
+        "INSERT INTO user(name, email, password) VALUES('Teste 4', 'teste4@teste', '123456');");
+    await db.execute(
+        "INSERT INTO user(name, email, password) VALUES('Teste 5', 'teste5@teste', '123456');");
+
     return db;
+  }
+
+  Future<List<Map<String, dynamic>>> getAllUsers() async {
+    Database db = await database;
+    List<Map<String, dynamic>> users = await db.query('user');
+    return users;
   }
 
   Future<Map<String, dynamic>?> getUserByEmailAndPassword(

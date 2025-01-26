@@ -1,5 +1,5 @@
 class Property {
-  String id;
+  int id;
   String userId;
   String addressId;
   String title;

@@ -10,6 +10,16 @@ class UserProvider with ChangeNotifier {
   User? _user = null;
   get user => _user;
 
+  /// Get all users
+  Future<List<User>?> getAllUsers() async {
+    final response = await _userService.getAllUsers();
+
+    if (response != null) {
+      return response;
+    }
+    return null;
+  }
+
   /// Logs the user into the app
   Future<bool> signIn(String email, String password) async {
     final response = await _userService.signIn(email, password);
@@ -21,5 +31,11 @@ class UserProvider with ChangeNotifier {
       return true;
     }
     return false;
+  }
+
+  /// Sign out
+  Future<void> signOut() async {
+    _user = null;
+    notifyListeners();
   }
 }

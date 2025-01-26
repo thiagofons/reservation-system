@@ -9,6 +9,23 @@ class UserService {
 
   UserService();
 
+  Future<List<User>?> getAllUsers() async {
+    try {
+      final users = await repository.getAllUsers();
+
+      if (users.isEmpty) {
+        throw Error.safeToString("👤 User Service - ❌ Users not found");
+      }
+
+      logger.d("👤 User Service - ✅ Users found");
+
+      return users.map((user) => User.fromJson(user)).toList();
+    } catch (error) {
+      logger.e(error);
+      return null;
+    }
+  }
+
   Future<User?> signIn(String email, String password) async {
     try {
       final user = await repository.getUserByEmailAndPassword(email, password);

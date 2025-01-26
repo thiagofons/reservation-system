@@ -1,5 +1,5 @@
 class Images {
-  String id;
+  int id;
   String propertyId;
   String url;
 
