@@ -52,13 +52,24 @@ class _RegisterScreenState extends State<RegisterScreen> {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(120),
-        child: AppBar(
-          automaticallyImplyLeading: false,
-          backgroundColor: Theme.of(context).colorScheme.primary,
-          title: Text(
-            "Cadastrar",
-            style: AppTextStyles.h1.copyWith(color: Colors.white),
-            textAlign: TextAlign.left,
+        child: Expanded(
+          child: Container(
+            padding: EdgeInsets.only(bottom: 16),
+            color: Theme.of(context).colorScheme.primary,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                AppBar(
+                  automaticallyImplyLeading: false,
+                  backgroundColor: Theme.of(context).colorScheme.primary,
+                  title: Text(
+                    "Cadastrar",
+                    style: AppTextStyles.h1
+                        .copyWith(color: Theme.of(context).colorScheme.surface),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

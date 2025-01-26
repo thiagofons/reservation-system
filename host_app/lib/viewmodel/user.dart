@@ -44,7 +44,7 @@ class UserProvider with ChangeNotifier {
   }
 
   /// Sign out
-  Future<void> signOut() async {
+  void signOut() async {
     _user = null;
     notifyListeners();
   }
