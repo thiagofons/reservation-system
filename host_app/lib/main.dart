@@ -32,15 +32,15 @@ class MainApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: "PlusJakartaSans",
         colorScheme: ColorScheme.fromSwatch().copyWith(
-          primary: const Color(0xFF3A3A3A), // Dark Gray for primary elements
+          primary: const Color(0xFFFD5C63), // Airbnb Red for primary elements
           secondary:
-              const Color(0xFFE5E5E5), // Light Gray for secondary elements
+              const Color(0xFF00A699), // Airbnb Green for secondary elements
           surface: const Color(0xFFFFFFFF), // White for cards and surfaces
-          error: const Color(0xFFFF6B6B), // Red for error messages
+          error: const Color(0xFFE12D39), // Bright Red for error messages
           onPrimary: const Color(0xFFFFFFFF), // White text on primary elements
           onSecondary:
-              const Color(0xFF3A3A3A), // Dark text on secondary elements
-          onSurface: const Color(0xFF3A3A3A), // Dark text on surfaces
+              const Color(0xFFFFFFFF), // White text on secondary elements
+          onSurface: const Color(0xFF484848), // Dark Grey text on surfaces
           onError: const Color(0xFFFFFFFF), // White text on error elements
         ),
       ),

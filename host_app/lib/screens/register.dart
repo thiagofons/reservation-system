@@ -53,6 +53,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(120),
         child: AppBar(
+          automaticallyImplyLeading: false,
           backgroundColor: Theme.of(context).colorScheme.primary,
           title: Text(
             "Cadastrar",
@@ -108,7 +109,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     child: Text(
                       "Cadastrar",
                       style: AppTextStyles.button.copyWith(
-                          color: Theme.of(context).colorScheme.secondary),
+                          color: Theme.of(context).colorScheme.surface),
                     ),
                   ),
                 ),
@@ -121,7 +122,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   child: ElevatedButton(
                     style: ButtonStyle(
                       backgroundColor: WidgetStatePropertyAll(
-                          Theme.of(context).colorScheme.secondary),
+                          Theme.of(context).colorScheme.onSurface),
                       fixedSize:
                           WidgetStatePropertyAll(Size(double.infinity, 48)),
                       shape: WidgetStatePropertyAll(
@@ -134,7 +135,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     child: Text(
                       "Fazer login",
                       style: AppTextStyles.button.copyWith(
-                          color: Theme.of(context).colorScheme.primary),
+                          color: Theme.of(context).colorScheme.surface),
                     ),
                   ),
                 ),
