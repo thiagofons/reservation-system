@@ -53,10 +53,4 @@ class UserService {
     }
   }
   */
-
-  void signOut() {
-    try {} catch (error) {
-      logger.e(error);
-    }
-  }
 }
