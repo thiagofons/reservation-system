@@ -31,6 +31,13 @@ class _LoginScreenState extends State<LoginScreen> {
             context,
             HomeScreen.routeName,
           );
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text("E-mail ou senha inválidos"),
+              backgroundColor: Theme.of(context).colorScheme.error,
+            ),
+          );
         }
       });
     }
