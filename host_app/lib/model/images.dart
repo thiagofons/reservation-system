@@ -1,7 +1,7 @@
 class Images {
-  int id;
-  String propertyId;
-  String url;
+  int? id;
+  String? propertyId;
+  String? url;
 
   Images({
     required this.id,
@@ -10,9 +10,10 @@ class Images {
   });
 
   Images.fromJson(Map<String, dynamic> json)
-      : id = json['id'],
-        propertyId = json['property_id'],
-        url = json['url'];
+      : id = json['id'] != null ? json['id'] as int : null,
+        propertyId =
+            json['property_id'] != null ? json['property_id'] as String : null,
+        url = json['url'] != null ? json['url'] as String : null;
 
   toJson() {
     return {

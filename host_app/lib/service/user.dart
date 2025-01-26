@@ -43,6 +43,23 @@ class UserService {
     }
   }
 
+  Future<User?> signUp(String name, String email, String password) async {
+    try {
+      final user = await repository.createUser(name, email, password);
+
+      if (user == null) {
+        throw Error.safeToString("👤 User Service - ❌ User not created");
+      }
+
+      logger.d("👤 User Service - ✅ User created");
+
+      return User.fromJson(user);
+    } catch (error) {
+      logger.e(error);
+      return null;
+    }
+  }
+
   /*
   User? signUp(String name, String email, String password) {
     try {

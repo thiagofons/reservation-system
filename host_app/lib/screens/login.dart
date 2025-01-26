@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:host_app/screens/home.dart';
+import 'package:host_app/screens/register.dart';
 import 'package:host_app/styles/text.dart';
 import 'package:host_app/viewmodel/user.dart';
 import 'package:host_app/widgets/text_input.dart';
@@ -40,6 +41,10 @@ class _LoginScreenState extends State<LoginScreen> {
           );
         }
       });
+    }
+
+    signUp() async {
+      Navigator.pushNamed(context, RegisterScreen.routeName);
     }
 
     return Scaffold(
@@ -95,6 +100,32 @@ class _LoginScreenState extends State<LoginScreen> {
                       "Login",
                       style: AppTextStyles.button.copyWith(
                           color: Theme.of(context).colorScheme.secondary),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 16),
+            Row(
+              children: [
+                Expanded(
+                  child: ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor: WidgetStatePropertyAll(
+                          Theme.of(context).colorScheme.secondary),
+                      fixedSize:
+                          WidgetStatePropertyAll(Size(double.infinity, 48)),
+                      shape: WidgetStatePropertyAll(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                      ),
+                    ),
+                    onPressed: signUp,
+                    child: Text(
+                      "Cadastrar",
+                      style: AppTextStyles.button.copyWith(
+                          color: Theme.of(context).colorScheme.primary),
                     ),
                   ),
                 ),

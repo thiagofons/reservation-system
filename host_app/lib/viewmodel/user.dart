@@ -33,6 +33,16 @@ class UserProvider with ChangeNotifier {
     return false;
   }
 
+  /// Registers a new user
+  Future<bool> signUp(String name, String email, String password) async {
+    final response = await _userService.signUp(name, email, password);
+
+    if (response != null) {
+      return signIn(email, password);
+    }
+    return false;
+  }
+
   /// Sign out
   Future<void> signOut() async {
     _user = null;

@@ -1,13 +1,13 @@
 class Booking {
-  int id;
-  int userId;
-  int propertyId;
-  int checkInDate;
-  int checkOutDate;
-  int totalDays;
-  double totalPrice;
-  int amoutGuest;
-  double rating;
+  int? id;
+  int? userId;
+  int? propertyId;
+  int? checkInDate;
+  int? checkOutDate;
+  int? totalDays;
+  double? totalPrice;
+  int? amoutGuest;
+  double? rating;
 
   Booking({
     required this.id,
@@ -22,15 +22,22 @@ class Booking {
   });
 
   Booking.fromJson(Map<String, dynamic> json)
-      : id = json['id'],
-        userId = json['user_id'],
-        propertyId = json['property_id'],
-        checkInDate = json['check_in_date'],
-        checkOutDate = json['check_out_date'],
-        totalDays = json['total_days'],
-        totalPrice = json['total_price'],
-        amoutGuest = json['amout_guest'],
-        rating = json['rating'];
+      : id = json['id'] != null ? json['id'] as int : null,
+        userId = json['user_id'] != null ? json['user_id'] as int : null,
+        propertyId =
+            json['property_id'] != null ? json['property_id'] as int : null,
+        checkInDate =
+            json['check_in_date'] != null ? json['check_in_date'] as int : null,
+        checkOutDate = json['check_out_date'] != null
+            ? json['check_out_date'] as int
+            : null,
+        totalDays =
+            json['total_days'] != null ? json['total_days'] as int : null,
+        totalPrice =
+            json['total_price'] != null ? json['total_price'] as double : null,
+        amoutGuest =
+            json['amout_guest'] != null ? json['amout_guest'] as int : null,
+        rating = json['rating'] != null ? json['rating'] as double : null;
 
   toJson() {
     return {

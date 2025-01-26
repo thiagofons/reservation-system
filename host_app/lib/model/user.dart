@@ -1,7 +1,7 @@
 class User {
-  int id;
-  String name;
-  String email;
+  int? id;
+  String? name;
+  String? email;
 
   User({
     required this.id,
@@ -10,9 +10,9 @@ class User {
   });
 
   User.fromJson(Map<String, dynamic> json)
-      : id = json['id'],
-        name = json['name'],
-        email = json['email'];
+      : id = json['id'] != null ? json['id'] as int : null,
+        name = json['name'] != null ? json['name'] as String : null,
+        email = json['email'] != null ? json['email'] as String : null;
 
   Map<String, dynamic> toJson() => {
         'id': id,

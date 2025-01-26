@@ -68,4 +68,22 @@ class UserRepository {
 
     return null;
   }
+
+  Future<Map<String, dynamic>?> createUser(
+      String name, String email, String password) async {
+    Database db = await database;
+    Map<String, dynamic> user = {
+      "name": name,
+      "email": email,
+      "password": password
+    };
+
+    int id = await db.insert('user', user);
+
+    if (id > 0) {
+      return user;
+    }
+
+    return null;
+  }
 }
