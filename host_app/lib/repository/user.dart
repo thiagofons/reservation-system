@@ -72,6 +72,15 @@ class UserRepository {
   Future<Map<String, dynamic>?> createUser(
       String name, String email, String password) async {
     Database db = await database;
+
+    // Check if user with the given email already exists
+    List<Map<String, dynamic>> existingUsers =
+        await db.query('user', where: 'email = ?', whereArgs: [email]);
+
+    if (existingUsers.isNotEmpty) {
+      return null; // User with the given email already exists
+    }
+
     Map<String, dynamic> user = {
       "name": name,
       "email": email,
