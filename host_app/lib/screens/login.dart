@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:host_app/screens/home.dart';
 import 'package:host_app/styles/text.dart';
+import 'package:host_app/viewmodel/user.dart';
 import 'package:host_app/widgets/text_input.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String routeName = '/login';
@@ -68,8 +71,17 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                     onPressed: () {
-                      print("Email: ${controllers["email"]!.text}");
-                      print("Password: ${controllers["password"]!.text}");
+                      Provider.of<UserProvider>(context, listen: false)
+                          .signIn(controllers["email"]!.text,
+                              controllers["password"]!.text)
+                          .then((result) {
+                        if (result) {
+                          Navigator.pushNamed(
+                            context,
+                            HomeScreen.routeName,
+                          );
+                        }
+                      });
                     },
                     child: Text(
                       "Login",

@@ -5,10 +5,20 @@ import 'package:host_app/screens/property.dart';
 import 'package:host_app/screens/property_detail.dart';
 import 'package:host_app/screens/register.dart';
 import 'package:host_app/screens/search.dart';
+import 'package:host_app/service/user.dart';
+import 'package:host_app/viewmodel/user.dart';
+import 'package:provider/provider.dart';
 
 void main() {
+  UserService userService = UserService();
+
   runApp(
-    const MainApp(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => UserProvider(userService)),
+      ],
+      child: const MainApp(),
+    ),
   );
 }
 
