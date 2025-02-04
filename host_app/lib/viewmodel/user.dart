@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:host_app/model/user.dart';
 import 'package:host_app/service/user.dart';
 
-class UserProvider with ChangeNotifier {
-  UserService _userService = UserService();
+class UserViewModel with ChangeNotifier {
+  final UserService _userService;
 
-  UserProvider(this._userService);
+  UserViewModel(this._userService);
 
-  User? _user = null;
-  get user => _user;
+  User? _user;
+  User? get user => _user;
 
   /// Get all users
   Future<List<User>?> getAllUsers() async {

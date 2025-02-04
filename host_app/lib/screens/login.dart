@@ -24,7 +24,7 @@ class _LoginScreenState extends State<LoginScreen> {
     };
 
     signIn() async {
-      Provider.of<UserProvider>(context, listen: false)
+      Provider.of<UserViewModel>(context, listen: false)
           .signIn(controllers["email"]!.text, controllers["password"]!.text)
           .then((result) {
         if (result) {

@@ -5,6 +5,8 @@ class TextInput extends StatefulWidget {
   final String? label;
   final String? placeholder;
   final TextEditingController? controller;
+  final TextInputType? keyboardType;
+  final int? maxLength;
   final bool? isPassword;
 
   const TextInput({
@@ -12,6 +14,8 @@ class TextInput extends StatefulWidget {
     this.label,
     this.placeholder,
     this.isPassword = false,
+    this.keyboardType,
+    this.maxLength,
     required this.controller,
   });
 
@@ -25,7 +29,12 @@ class _TextInputState extends State<TextInput> {
     return TextFormField(
       controller: widget.controller,
       style: AppTextStyles.body1,
+      textCapitalization: widget.keyboardType == TextInputType.name
+          ? TextCapitalization.sentences
+          : TextCapitalization.none,
+      maxLength: widget.maxLength,
       obscureText: widget.isPassword!,
+      keyboardType: widget.keyboardType,
       decoration: InputDecoration(
         labelText: widget.label,
         labelStyle: AppTextStyles.caption,

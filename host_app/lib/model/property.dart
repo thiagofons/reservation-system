@@ -1,7 +1,7 @@
 class Property {
   int? id;
-  String? userId;
-  String? addressId;
+  int? userId;
+  int? addressId;
   String? title;
   String? description;
   int? number;
@@ -11,23 +11,23 @@ class Property {
   String? thumbnail;
 
   Property({
-    required this.id,
-    required this.userId,
-    required this.addressId,
-    required this.title,
-    required this.description,
-    required this.number,
-    required this.complement,
-    required this.price,
-    required this.maxGuest,
-    required this.thumbnail,
+    this.id,
+    this.userId,
+    this.addressId,
+    this.title,
+    this.description,
+    this.number,
+    this.complement,
+    this.price,
+    this.maxGuest,
+    this.thumbnail,
   });
 
   Property.fromJson(Map<String, dynamic> json)
       : id = json['id'] != null ? json['id'] as int : null,
-        userId = json['user_id'] != null ? json['user_id'] as String : null,
+        userId = json['user_id'] != null ? json['user_id'] as int : null,
         addressId =
-            json['address_id'] != null ? json['address_id'] as String : null,
+            json['address_id'] != null ? json['address_id'] as int : null,
         title = json['title'] != null ? json['title'] as String : null,
         description =
             json['description'] != null ? json['description'] as String : null,

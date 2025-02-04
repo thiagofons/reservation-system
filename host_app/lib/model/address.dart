@@ -20,13 +20,13 @@ class Address {
   Address.fromJson(Map<String, dynamic> json)
       : id = json['id'] != null ? json['id'] as int : null,
         cep = json['cep'] != null ? json['cep'] as String : null,
-        street = json['street'] != null ? json['street'] as String : null,
-        neighborhood = json['neighborhood'] != null
-            ? json['neighborhood'] as String
-            : null,
-        locality = json['locality'] != null ? json['locality'] as String : null,
+        street =
+            json['logradouro'] != null ? json['logradouro'] as String : null,
+        neighborhood = json['bairro'] != null ? json['bairro'] as String : null,
+        locality =
+            json['localidade'] != null ? json['localidade'] as String : null,
         uf = json['uf'] != null ? json['uf'] as String : null,
-        state = json['state'] != null ? json['state'] as String : null;
+        state = json['estado'] != null ? json['estado'] as String : null;
 
   toJson() {
     return {

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:host_app/screens/add_property.dart';
 import 'package:host_app/screens/login.dart';
-import 'package:host_app/service/property.dart';
 import 'package:host_app/styles/text.dart';
+import 'package:host_app/viewmodel/property.dart';
 import 'package:host_app/viewmodel/user.dart';
 import 'package:provider/provider.dart';
 
@@ -13,19 +14,43 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     logout() {
-      Provider.of<UserProvider>(context, listen: false).signOut();
+      Provider.of<UserViewModel>(context, listen: false).signOut();
       Navigator.pushReplacementNamed(context, LoginScreen.routeName);
     }
 
     getAllProperties() async {
-      final id = Provider.of<UserProvider>(context).user!.id;
+      final id = Provider.of<UserViewModel>(context).user!.id;
 
-      PropertyService service = PropertyService();
+      if (id != null) {
+        Provider.of<PropertyViewModel>(context, listen: false)
+            .getAllProperties(id);
 
-      return service.getAllProperties(id);
+        return Provider.of<PropertyViewModel>(context).properties;
+      }
     }
 
-    addProperty() {}
+    addProperty() {
+      Navigator.of(context).push(PageRouteBuilder(
+        pageBuilder: (context, animation, secondaryAnimation) =>
+            const AddPropertyScreen(),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          const begin = Offset(0.0, 1.0);
+          const end = Offset.zero;
+          const curve = Curves.ease;
+
+          var tween =
+              Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+          var offsetAnimation = animation.drive(tween);
+
+          return SlideTransition(
+            position: offsetAnimation,
+            child: child,
+          );
+        },
+      ));
+    }
+
+    final properties = Provider.of<PropertyViewModel>(context).properties;
 
     return Scaffold(
       appBar: PreferredSize(
@@ -69,7 +94,7 @@ class HomeScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Olá, ${Provider.of<UserProvider>(context).user!.name}",
+                    "Olá, ${Provider.of<UserViewModel>(context).user!.name}",
                     style: AppTextStyles.h2,
                   ),
                   Text("Bem-vindo ao sistema de reservas",
@@ -94,20 +119,11 @@ class HomeScreen extends StatelessWidget {
                   }
 
                   if (snapshot.hasData) {
-                    return Column(
-                      children: [
-                        ListView.builder(
-                          shrinkWrap: true,
-                          itemCount: snapshot.data.length,
-                          itemBuilder: (context, index) {
-                            return ListTile(
-                              title: Text(snapshot.data[index].name),
-                              subtitle: Text(snapshot.data[index].address),
-                            );
-                          },
-                        ),
-                      ],
-                    );
+                    return ListView.builder(itemBuilder: (context, index) {
+                      return ListTile(
+                        title: Text(properties[index].title!),
+                      );
+                    });
                   }
 
                   return Text("Nenhuma propriedade encontrada");

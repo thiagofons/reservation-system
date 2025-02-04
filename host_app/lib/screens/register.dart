@@ -25,7 +25,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     };
 
     signUp() async {
-      Provider.of<UserProvider>(context, listen: false)
+      Provider.of<UserViewModel>(context, listen: false)
           .signUp(controllers["name"]!.text, controllers["email"]!.text,
               controllers["password"]!.text)
           .then((result) {
